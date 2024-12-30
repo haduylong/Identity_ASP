@@ -15,14 +15,13 @@ namespace Identity.Domain.Entities
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3, ErrorMessage = "Role's name must be at least {0} character")]
+        [MinLength(3, ErrorMessage = "Role's name must be at least {1} characters")]
         public string Name { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Description { get; set; }
 
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+        public ICollection<User> User { get; set; }
 
         public ICollection<Permission> Permissions { get; set; }
     }

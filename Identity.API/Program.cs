@@ -1,3 +1,4 @@
+using Identity.Application.Configurations;
 using Identity.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.InfrastructureRegister(builder.Configuration);
+builder.Services.ApplicationRegister();
 
 var app = builder.Build();
 

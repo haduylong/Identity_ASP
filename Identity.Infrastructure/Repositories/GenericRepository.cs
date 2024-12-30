@@ -22,18 +22,12 @@ namespace Identity.Infrastructure.Repositories
         }
         public async Task<T> CreateAsync(T entity)
         {
-            if (entity == null) 
-                throw new ArgumentNullException(nameof(entity));
-
             await _dbSet.AddAsync(entity);
             return entity;
         }
 
         public async Task<T> UpdateAsync(T entity)
         {
-            if (entity == null)
-                throw new ArgumentNullException(nameof(entity));
-
             _dbSet.Update(entity);
             return entity;
         }
@@ -41,11 +35,10 @@ namespace Identity.Infrastructure.Repositories
         public async Task DeleteAsync(ID id)
         {
             var entity = await _dbSet.FindAsync(id);
-
-            if (entity == null)
-                throw new KeyNotFoundException("Entity not found");
-
-            _dbSet.Remove(entity);
+            if (entity != null)
+            {
+                _dbSet.Remove(entity);
+            }
         }
 
         public async Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, bool>>[] filters)
@@ -60,7 +53,7 @@ namespace Identity.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<T> GetAsync(ID id, params Expression<Func<T, bool>>[] filters)
+        public async Task<T?> GetAsync(ID id, params Expression<Func<T, bool>>[] filters)
         {
             var entity = await _dbSet.FindAsync(id);
 

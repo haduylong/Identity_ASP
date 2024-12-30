@@ -15,7 +15,7 @@ namespace Identity.Domain.Entities
         [Key]
         public int Id { get; set; }
 
-        [MinLength(3, ErrorMessage = "Permission's name must be at least {0} character")]
+        [MinLength(3, ErrorMessage = "Permission's name must be at least {1} characters")]
         public string Name { get; set; }
 
         [Column(TypeName ="ntext")]

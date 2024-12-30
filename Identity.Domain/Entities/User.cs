@@ -15,17 +15,18 @@ namespace Identity.Domain.Entities
         public Guid Id { get; set; }
 
         [Required]
-        [MinLength(3, ErrorMessage = "Password must be at least {0} character")]
+        [MinLength(3, ErrorMessage = "Name must be at least {1} characters")]
         public string Name { get; set; }
 
         [Required]
         public string Email { get; set; }
 
         [Required]
-        [MinLength(6, ErrorMessage = "Password must be at least {0} character")]
+        [MinLength(6, ErrorMessage = "Password must be at least {1} characters")]
         public string Password { get; set; }
         public DateTime DateOfBirth { get; set; }
 
-        public ICollection<Role> Roles { get; set; }
+        public int RoleId { get; set; }
+        public Role Role { get; set; }
     }
 }

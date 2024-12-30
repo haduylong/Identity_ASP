@@ -11,7 +11,7 @@ namespace Identity.Domain.Repositories
     {
         Task<IEnumerable<T>> GetAllAsync(params Expression<Func<T, bool>>[] filters);
 
-        Task<T> GetAsync(ID id, params Expression<Func<T, bool>>[] filters);
+        Task<T?> GetAsync(ID id, params Expression<Func<T, bool>>[] filters);
 
         Task<T> CreateAsync(T entity);
         Task<T> UpdateAsync(T entity);
